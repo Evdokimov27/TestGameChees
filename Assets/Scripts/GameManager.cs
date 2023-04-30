@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 			Ray ray = camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
 			RaycastHit raycastHit;
 
-			if(Physics.Raycast(ray, out raycastHit, Mathf.Infinity))
+			if(Physics.Raycast(ray, out raycastHit, Mathf.Infinity) && raycastHit.transform.gameObject.tag == "Block")
 			{
 				raycastHit.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
 			}
