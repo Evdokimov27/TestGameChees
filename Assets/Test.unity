@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win: 0
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 2
@@ -166,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win: 0
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 3
@@ -196,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win: 0
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 1
@@ -403,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win: 1
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 3
@@ -432,7 +436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43afc70e82ad8c42955f6a2de18d45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  win: 0
+  win: 1
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 3
@@ -557,6 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win: 0
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 1
@@ -587,6 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win: 0
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 2
@@ -617,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win: 0
+  canMove: 0
   figure: {fileID: 0}
   gameManager: {fileID: 1834747636}
   x: 1
@@ -676,7 +684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8737204920524100739, guid: 214d6ee90b2e9bd48b1d8b0094526e83, type: 3}
       propertyPath: orthographic size
-      value: 2.06
+      value: 5.11
       objectReference: {fileID: 0}
     - target: {fileID: -8737204920524100739, guid: 214d6ee90b2e9bd48b1d8b0094526e83, type: 3}
       propertyPath: m_projectionMatrixMode
@@ -837,12 +845,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1672425689}
-  figure: {fileID: 1403062309473289834}
-  x: 1
-  y: 3
-  point: 
   cellX: 
   cellY: 
+  x: 1
+  y: 3
+  figure: {fileID: 1403062309473289834}
   block:
   - {fileID: 6535344281701193992}
   - {fileID: 4935985347211086634}
@@ -854,7 +861,6 @@ MonoBehaviour:
   - {fileID: 5358717139223190569}
   win_level: []
   for_win: 0
-  possibleMoves: []
 --- !u!4 &1834747638
 Transform:
   m_ObjectHideFlags: 0
@@ -1330,7 +1336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403062309473289834}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -0.557, y: -0, z: 0.63}
+  m_LocalPosition: {x: -0.531, y: 1.214, z: 0.573}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
