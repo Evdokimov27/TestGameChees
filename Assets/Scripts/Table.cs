@@ -10,7 +10,7 @@ public class Table : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		
 	}
 
 	private void OnCollisionEnter(Collision collision)
@@ -26,7 +26,7 @@ public class Table : MonoBehaviour
 		figure = null;
 		if (win)
 		{
-			gameManager.gameObject.GetComponent<GameManager>().for_win += 1;
+			gameManager.gameObject.GetComponent<GameManager>().for_win += 1;//sdadsas
 		}
 	}
 	// Update is called once per frame

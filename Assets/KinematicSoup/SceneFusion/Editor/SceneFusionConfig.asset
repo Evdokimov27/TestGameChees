@@ -15,8 +15,8 @@ MonoBehaviour:
   ShowGettingStartedScreen: 0
   UI:
     ShowOnlineIndicator: 1
-    ShowCollaboratorCamera: 1
-    ShowCollaboratorTerrainBrush: 1
+    ShowCollaboratorCamera: 0
+    ShowCollaboratorTerrainBrush: 0
     OnlineStatusOffset: {x: 45, y: 0}
     HierarchyIconOffset: 0
   Network:
