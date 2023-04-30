@@ -80,23 +80,18 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-			for(int i = 0; i < block.Length; i++)
+		for (int i = 0; i < block.Length; i++)
+		{
+			for (int j = 0; i < cellX.Count; i++)
 			{
-				for (int j = 0; i < cellX.Count; i++)
+				if (block[i].GetComponent<Table>().x == cellX[j])
 				{
-					for (int y = 0; y < cellY.Count; y++)
+					if (block[i].GetComponent<Table>().y == cellY[j])
 					{
-
-						if (block[i].GetComponent<Table>().x == cellX[j])
-						{
-							if (block[i].GetComponent<Table>().y == cellY[y])
-							{
-								Debug.Log(cellX[j] + " " + cellY[y]);
-							}
-						}
+						Debug.Log(cellX[j] + " " + cellY[j]);
 					}
 				}
 			}
-		
+		}
     }
 }
