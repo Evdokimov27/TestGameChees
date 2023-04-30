@@ -7,6 +7,8 @@ public class Table : MonoBehaviour
 	[SerializeField] public bool win;
 	[SerializeField] public GameObject figure;
 	[SerializeField] private GameObject gameManager;
+	[SerializeField] private int x;
+	[SerializeField] private int y;
 	// Start is called before the first frame update
 	void Start()
 	{
