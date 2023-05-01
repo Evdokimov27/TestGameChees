@@ -7,7 +7,7 @@ public class Table : MonoBehaviour
 	[SerializeField] public bool win;
 	[SerializeField] public bool canMove;
 	[SerializeField] public GameObject figure;
-	[SerializeField] private GameObject gameManager;
+	[SerializeField] public GameObject winManager;
 	[SerializeField] public int x;
 	[SerializeField] public int y;
 	// Start is called before the first frame update
@@ -18,29 +18,30 @@ public class Table : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
 		figure = collision.gameObject;
-		gameManager.GetComponent<GameManager>().x = x;
-		gameManager.GetComponent<GameManager>().y = y;
-		if (win)
+		Debug.Log("entert");
+		if (figure != null)
 		{
-			gameManager.gameObject.GetComponent<GameManager>().for_win -= 1;
+			figure.GetComponent<GameManager>().x = x;
+			figure.GetComponent<GameManager>().y = y;
+			if (win)
+			{
+				winManager.GetComponent<Win>().for_win -= 1;
+			}
 		}
-	}
-	private void OnCollisionStay(Collision collision)
-	{
-
 	}
 	private void OnCollisionExit(Collision collision)
 	{
 		figure = null;
 		if (win)
 		{
-			gameManager.gameObject.GetComponent<GameManager>().for_win += 1;//sdadsas
+				winManager.GetComponent<Win>().for_win += 1;
+
 		}
 	}
 	// Update is called once per frame
 	void Update()
 	{
-
+		
 	}
 
 

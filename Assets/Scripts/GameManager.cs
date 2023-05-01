@@ -13,17 +13,11 @@ public class GameManager : MonoBehaviour
 	[SerializeField] public int y;
 	[SerializeField] private GameObject figure;
 	[SerializeField] private GameObject[] block;
-    [SerializeField] private List<GameObject> win_level;
-    [SerializeField] public int for_win;
+    [SerializeField] public bool interact;
+    public bool isDone;
     // Start is called before the first frame update
     void Start()
     {
-		for (int i = 0; i < block.Length; i++)
-		{
-			if(block[i].GetComponent<Table>().win)
-			this.win_level.Add(block[i]);
-		}
-		for_win = this.win_level.Count;
 
 	}
 
@@ -32,13 +26,16 @@ public class GameManager : MonoBehaviour
 	{
 		Ray ray = camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
 		RaycastHit raycastHit;
-		foreach (Touch touch in Input.touches)
+
+		if (Input.GetMouseButtonDown(0))
 		{
-			if (touch.fingerId == 0)
+			if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity) && raycastHit.transform.gameObject.tag == "Pieces" && interact == false)
 			{
-				if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity) && raycastHit.transform.gameObject.tag == "Pieces")
+				interact = true;
+				raycastHit.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+				if (raycastHit.transform.gameObject == this.gameObject)
 				{
-					raycastHit.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+					figure = raycastHit.transform.gameObject;
 					cellX.RemoveRange(0, cellX.Count);
 					cellY.RemoveRange(0, cellY.Count);
 					int cellsDistance = 1;//Растояние между клетками 
@@ -64,14 +61,11 @@ public class GameManager : MonoBehaviour
 						cellX.Add(x + t);
 						t = -t;
 					}
-
-
-
 					for (int i = 0; i < block.Length; i++)
 					{
 						for (int j = 0; j < cellX.Count; j++)
 						{
-							if (block[i].GetComponent<Table>().x == cellX[j] && block[i].GetComponent<Table>().y == cellY[j])
+							if (block[i].GetComponent<Table>().x == raycastHit.transform.gameObject.GetComponent<GameManager>().cellX[j] && block[i].GetComponent<Table>().y == raycastHit.transform.gameObject.GetComponent<GameManager>().cellY[j])
 							{
 								block[i].GetComponent<MeshRenderer>().material.color = new Color(4, 4, 4, 4);
 								block[i].GetComponent<Table>().canMove = true;
@@ -79,40 +73,35 @@ public class GameManager : MonoBehaviour
 						}
 					}
 				}
-				if (raycastHit.transform.gameObject.tag == "Block")
+			}
+			if (raycastHit.transform.gameObject.tag == "Block")
+			{
+				interact = false;
+				figure.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
+				for (int i = 0; i < block.Length; i++)
 				{
-					figure.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
+					block[i].GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
 
-					for (int i = 0; i < block.Length; i++)
+					if (raycastHit.transform.GetComponent<Table>().canMove == true && raycastHit.transform.GetComponent<Table>().figure == null)
 					{
-						block[i].GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
-						figure.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
+						figure.transform.position = raycastHit.transform.position;
 
-						if (raycastHit.transform.GetComponent<Table>().canMove == true)
-						{
-							figure.transform.position = raycastHit.transform.position;
-
-							x = block[i].GetComponent<Table>().x;
-							y = block[i].GetComponent<Table>().y;
-
-						}
-						block[i].GetComponent<Table>().canMove = false;
+						x = block[i].GetComponent<Table>().x;
+						y = block[i].GetComponent<Table>().y;
 
 					}
+					block[i].GetComponent<Table>().canMove = false;
 				}
-				if (raycastHit.transform.gameObject.tag != "Block" && raycastHit.transform.gameObject.tag != "Pieces")
-				{
-					continue;
-				}
+				figure = null;
 			}
-		}
+			if (raycastHit.transform.gameObject.tag != "Block" && raycastHit.transform.gameObject.tag != "Pieces")
+			{
 
-		if (for_win == 0)
-		{
-			Debug.Log("Победа нахуй блээээ");
+			}
 		}
 		
 
 		
     }
 }
+
