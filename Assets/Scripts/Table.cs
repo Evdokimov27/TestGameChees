@@ -18,7 +18,6 @@ public class Table : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
 		figure = collision.gameObject;
-		Debug.Log("entert");
 		if (figure != null)
 		{
 			figure.GetComponent<GameManager>().x = x;

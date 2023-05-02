@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour
 {
 	[SerializeField] private List<GameObject> win_level;
 	[SerializeField] public int for_win;
-	[SerializeField] public GameObject[] light;
 	[SerializeField] private GameObject[] block;
-
+	[SerializeField] private PostProcessProfile post;
+	private float nextActionTime = 10f;
+	public float period = 1f;
 	void Start()
     {
 		for (int i = 0; i < block.Length; i++)
@@ -26,18 +29,21 @@ public class Win : MonoBehaviour
     {
 		if(for_win== 0)
 		{
-			for (int i = 0; i < light.Length; i++)
+			if (post.GetSetting<Bloom>().intensity.value < 30)
 			{
-				light[i].GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.white, Color.blue, Mathf.Abs(Mathf.Sin(Time.time)));
+				nextActionTime += period;
+				post.GetSetting<Bloom>().intensity.value += 0.5f;
 			}
-			//SceneManager.LoadScene(0);
+			else SceneManager.LoadScene(0);
 		}
 		else
 		{
-			for (int i = 0; i < light.Length; i++)
+			if (post.GetSetting<Bloom>().intensity.value > 0)
 			{
-				light[i].GetComponent<MeshRenderer>().material.color = new Color(0, 121, 204, 255);
+				nextActionTime += period;
+				post.GetSetting<Bloom>().intensity.value -= 0.5f;
 			}
 		}
 	}
+
 }

@@ -38,15 +38,15 @@ public class GameManager : MonoBehaviour
 					figure = raycastHit.transform.gameObject;
 					cellX.RemoveRange(0, cellX.Count);
 					cellY.RemoveRange(0, cellY.Count);
-					int cellsDistance = 1;//Растояние между клетками 
+					int cellsDistance = 1;
 					int t = 1 * cellsDistance;
 					int b = 2 * cellsDistance;
 
 
 					for (int j = 0; j < 2; j++)
 					{
-						cellX.Add(x + b); // есть ли там клетка, если есть красим 
-						cellY.Add(y + t); // есть ли там клетка, если есть красим
+						cellX.Add(x + b);
+						cellY.Add(y + t);
 						cellY.Add(y + b);
 						cellX.Add(x + t);
 						t = -t;
