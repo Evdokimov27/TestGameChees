@@ -31,7 +31,6 @@ public class Win : MonoBehaviour
 		{
 			if (post.GetSetting<Bloom>().intensity.value < 30)
 			{
-				nextActionTime += period;
 				post.GetSetting<Bloom>().intensity.value += 0.5f;
 			}
 			else SceneManager.LoadScene(0);
@@ -40,8 +39,7 @@ public class Win : MonoBehaviour
 		{
 			if (post.GetSetting<Bloom>().intensity.value > 0)
 			{
-				nextActionTime += period;
-				post.GetSetting<Bloom>().intensity.value -= 0.5f;
+				post.GetSetting<Bloom>().intensity.value = 0f;
 			}
 		}
 	}
