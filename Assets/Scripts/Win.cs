@@ -10,7 +10,7 @@ public class Win : MonoBehaviour
 	[SerializeField] private List<GameObject> win_level;
 	[SerializeField] public int for_win;
 	[SerializeField] private GameObject[] block;
-	[SerializeField] private PostProcessProfile post;
+	[SerializeField] private GameObject Mask;
 	private float nextActionTime = 10f;
 	public float period = 1f;
 	void Start()
@@ -29,17 +29,17 @@ public class Win : MonoBehaviour
     {
 		if(for_win== 0)
 		{
-			if (post.GetSetting<Bloom>().intensity.value < 30)
+			if (Mask.transform.localScale.x > 0 && Mask.transform.localScale.z > 0)
 			{
-				post.GetSetting<Bloom>().intensity.value += 0.5f;
+				Mask.transform.localScale = new Vector3(Mask.transform.localScale.x-0.15f, 0.5f, Mask.transform.localScale.z-0.15f); ;
 			}
 			else SceneManager.LoadScene(0);
 		}
 		else
 		{
-			if (post.GetSetting<Bloom>().intensity.value > 0)
+			if (Mask.transform.localScale.x <= 20 && Mask.transform.localScale.z <= 20)
 			{
-				post.GetSetting<Bloom>().intensity.value = 0f;
+				Mask.transform.localScale = new Vector3(Mask.transform.localScale.x+0.15f, 0.5f, Mask.transform.localScale.z+0.15f); ;
 			}
 		}
 	}
